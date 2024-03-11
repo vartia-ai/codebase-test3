@@ -7,3 +7,4 @@ config.status
 configure
 stamp-h1
 unittest2
+compile_commands.json
