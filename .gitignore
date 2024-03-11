@@ -1,6 +1,6 @@
 autom4te.cache
 .deps
-Makefile.*
+Makefile
 config.*
 configure
 stamp-h1
