@@ -1,7 +1,9 @@
 autom4te.cache
 .deps
 Makefile
-config.*
+config.log
+config.h
+config.status
 configure
 stamp-h1
 unittest2
