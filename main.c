@@ -49,6 +49,15 @@ void print_choice(void *data, int choice)
         printf("c: %f\n", ptr->c);
         printf("d: %f\n", ptr->d);
     }
+    else if (choice == 3)
+    {
+        printf("Choice 3\n");
+        printf("String: %s\n", (char*)data);
+    }
+    else
+    {
+        printf("Invalid choice\n");
+    }
 }
 
 void* init_choice(int choice)
@@ -70,6 +79,17 @@ void* init_choice(int choice)
         data->d = random_double();
         return data;
     }
+    else if (choice == 3)
+    {
+        char *string = "Hello Buffer Overflow!";
+        char *data = malloc(strlen(string) + 1);
+        strcpy(data, string);
+        return data;
+    }
+    else
+    {
+        printf("Invalid choice\n");
+    }
     return NULL;
 }
 
@@ -77,7 +97,7 @@ int main()
 {
     srand(time(NULL)); // Seed the random number generator with current time
 
-    int choice = random_int() % 2 + 1;
+    int choice = random_int() % 3 + 1;
     void *data = init_choice(choice);
     print_choice(data, choice);
     free(data);
