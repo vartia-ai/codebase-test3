@@ -1,0 +1,7 @@
+autom4te.cache
+.deps
+Makefile.*
+config.*
+configure
+stamp-h1
+unittest2
