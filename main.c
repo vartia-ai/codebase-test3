@@ -4,12 +4,26 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include "asan.h"
+
+typedef void (*FuncPtr)(int);
+
+void func1(int a)
+{
+    printf("func1: %d\n", a);
+}
+
+void func2(int a)
+{
+    printf("func1: %d\n", a);
+}
 
 struct choice_1
 {
     int a;
     int b;
     int c;
+    FuncPtr func_ptr;
 };
 
 struct choice_2
@@ -18,6 +32,7 @@ struct choice_2
     double b;
     double c;
     double d;
+    FuncPtr func_ptr;
 };
 
 double random_double()
@@ -39,6 +54,7 @@ void print_choice(void *data, int choice)
         printf("a: %d\n", ptr->a);
         printf("b: %d\n", ptr->b);
         printf("c: %d\n", ptr->c);
+        ptr->func_ptr(ptr->a);
     }
     else if (choice == 2)
     {
@@ -48,6 +64,7 @@ void print_choice(void *data, int choice)
         printf("b: %f\n", ptr->b);
         printf("c: %f\n", ptr->c);
         printf("d: %f\n", ptr->d);
+        ptr->func_ptr(ptr->a);
     }
     else if (choice == 3)
     {
@@ -68,6 +85,7 @@ void* init_choice(int choice)
         data->a = random_int();
         data->b = random_int();
         data->c = random_int();
+        data->func_ptr = func1;
         return data;
     }
     else if (choice == 2)
@@ -77,6 +95,7 @@ void* init_choice(int choice)
         data->b = random_double();
         data->c = random_double();
         data->d = random_double();
+        data->func_ptr = func2;
         return data;
     }
     else if (choice == 3)
@@ -102,4 +121,3 @@ int main()
     print_choice(data, choice);
     free(data);
 }
-

@@ -1,3 +1,3 @@
 # Makefile.am
-bin_PROGRAMS = unittest2
-unittest2_SOURCES = main.c
+bin_PROGRAMS = unittest3
+unittest3_SOURCES = main.c asan.c
