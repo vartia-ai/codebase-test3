@@ -5,6 +5,7 @@ config.log
 config.h
 config.status
 configure
+configure~
 stamp-h1
 unittest2
 compile_commands.json
