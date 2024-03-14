@@ -11,7 +11,7 @@ no) ;;
 *) AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
 esac],
 [if test -z "$CFLAGS"; then
-  CFLAGS="-fsanitize=address -O0 -g"
+    CFLAGS="-O0 -g -fsanitize-address-use-after-scope -fsanitize=address -fno-omit-frame-pointer"
 fi])
 
 if test -z "$CC"; then
