@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 typedef void (*FuncPtr)(int);
 
 void func1(int a)
