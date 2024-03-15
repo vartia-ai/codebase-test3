@@ -46,6 +46,7 @@ int random_int()
 
 void choice1_cast(void *data)
 {
+    printf("Choice 1\n");
     struct choice_1 *ptr = (struct choice_1*)data;
 }
 
