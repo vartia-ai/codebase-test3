@@ -51,6 +51,11 @@ void choice1_cast(void *data)
     struct choice_1 *ptr = (struct choice_1*)data;
 }
 
+void choice2_cast(void *data)
+{
+    struct choice_2 *ptr = (struct choice_2*)data;
+}
+
 void print_choice(void *data, int choice)
 {
     if (choice == 1)
@@ -87,22 +92,22 @@ void* init_choice(int choice)
 {
     if (choice == 1)
     {
-        struct choice_1 *data = malloc(sizeof(struct choice_1));
-        data->a = random_int();
-        data->b = random_int();
-        data->c = random_int();
-        data->func_ptr = func1;
-        return data;
+        struct choice_1 *c1 = malloc(sizeof(struct choice_1));
+        c1->a = 11;
+        c1->b = 22;
+        c1->c = 33;
+        c1->func_ptr = func1;
+        return c1;
     }
     else if (choice == 2)
     {
-        struct choice_2 *data = malloc(sizeof(struct choice_2));
-        data->a = random_double();
-        data->b = random_double();
-        data->c = random_double();
-        data->d = random_double();
-        data->func_ptr = func2;
-        return data;
+        struct choice_2 *c2 = malloc(sizeof(struct choice_2));
+        c2->a = 0.44;
+        c2->b = 0.55;
+        c2->c = 0.66;
+        c2->d = 0.77;
+        c2->func_ptr = func2;
+        return c2;
     }
     else if (choice == 3)
     {
@@ -122,14 +127,14 @@ int main()
 {
     srand(time(NULL)); // Seed the random number generator with current time
 
-    struct choice_1 *c1 = malloc(sizeof(struct choice_1));
-    c1->a = 11;
-    c1->b = 22;
-    c1->c = 33;
-    c1->func_ptr = func1;
+    struct choice_1 *c1 = init_choice(1);
+    struct choice_1 *c2 = init_choice(2);
 
     void *data = c1;
     choice1_cast(data);
+
+    data = c2;
+    choice2_cast(data);
 
     int choice = random_int() % 3 + 1;
     data = init_choice(choice);
