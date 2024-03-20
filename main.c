@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 
 typedef void (*FuncPtr)(int);
 
@@ -42,8 +41,11 @@ void choice1_cast(void *data)
 
 void choice2_cast(void *data)
 {
-    struct choice_2 *ptr = (struct choice_2*)data;
-     printf("Cast Choice 2\n");
+    struct choice_2 *ptr = (struct
+    choice_2
+    *)data;
+
+    printf("Cast Choice 2\n");
 }
 
 void print_choice(void *data, int choice)
