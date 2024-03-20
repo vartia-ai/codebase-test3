@@ -14,7 +14,7 @@ void func1(int a)
 
 void func2(int a)
 {
-    printf("func1: %d\n", a);
+    printf("func2: %d\n", a);
 }
 
 struct choice_1
@@ -30,20 +30,20 @@ struct choice_2
     double a;
     double b;
     double c;
-    double d;
+    int d;
     FuncPtr func_ptr;
 };
 
 void choice1_cast(void *data)
 {
-    printf("Choice 1\n");
-
+    printf("Cast Choice 1\n");
     struct choice_1 *ptr = (struct choice_1*)data;
 }
 
 void choice2_cast(void *data)
 {
     struct choice_2 *ptr = (struct choice_2*)data;
+     printf("Cast Choice 2\n");
 }
 
 void print_choice(void *data, int choice)
@@ -51,25 +51,23 @@ void print_choice(void *data, int choice)
     if (choice == 1)
     {
         struct choice_1 *ptr = (struct choice_1*)data;
-        printf("Choice 1\n");
+        printf("Print Choice 1\n");
         printf("a: %d\n", ptr->a);
         printf("b: %d\n", ptr->b);
-        printf("c: %d\n", ptr->c);
-        ptr->func_ptr(ptr->a);
+        ptr->func_ptr(ptr->c);
     }
     else if (choice == 2)
     {
         struct choice_2 *ptr = (struct choice_2*)data;
-        printf("Choice 2\n");
+        printf("Print Choice 2\n");
         printf("a: %f\n", ptr->a);
         printf("b: %f\n", ptr->b);
-        printf("c: %f\n", ptr->c);
-        printf("d: %f\n", ptr->d);
-        ptr->func_ptr(ptr->a);
+        printf("c: %f\n", ptr->c);        
+        ptr->func_ptr(ptr->d);
     }
     else if (choice == 3)
     {
-        printf("Choice 3\n");
+        printf("Print Choice 3\n");
         printf("String: %s\n", (char*)data);
     }
     else
@@ -95,7 +93,7 @@ void* init_choice(int choice)
         c2->a = 0.44;
         c2->b = 0.55;
         c2->c = 0.66;
-        c2->d = 0.77;
+        c2->d = 77;
         c2->func_ptr = func2;
         return c2;
     }
