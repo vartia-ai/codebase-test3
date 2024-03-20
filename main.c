@@ -34,16 +34,6 @@ struct choice_2
     FuncPtr func_ptr;
 };
 
-double random_double()
-{
-    return (double)rand() / (double)RAND_MAX;
-}
-
-int random_int()
-{
-    return (int)rand();
-}
-
 void choice1_cast(void *data)
 {
     printf("Choice 1\n");
@@ -125,19 +115,17 @@ void* init_choice(int choice)
 
 int main()
 {
-    srand(time(NULL)); // Seed the random number generator with current time
-
     struct choice_1 *c1 = init_choice(1);
-    struct choice_1 *c2 = init_choice(2);
+    choice1_cast(c1);
+    print_choice(c1, 1);
+    free(c1);
 
-    void *data = c1;
-    choice1_cast(data);
+    struct choice_2 *c2 = init_choice(2);
+    choice1_cast(c2);
+    print_choice(c2, 2);
+    free(c2);
 
-    data = c2;
-    choice2_cast(data);
-
-    int choice = random_int() % 3 + 1;
-    data = init_choice(choice);
-    print_choice(data, choice);
-    free(data);
+    char *str = init_choice(3);
+    print_choice(str, 3);
+    free(str);
 }
