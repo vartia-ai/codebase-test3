@@ -41,6 +41,7 @@ void choice1_cast(void *data)
 
 void choice2_cast(void *data)
 {
+    //Multiline cast
     struct choice_2 *ptr = (struct
     choice_2
     *)data;
@@ -121,7 +122,7 @@ int main()
     free(c1);
 
     struct choice_2 *c2 = init_choice(2);
-    choice1_cast(c2);
+    choice2_cast(c2);
     print_choice(c2, 2);
     free(c2);
 
